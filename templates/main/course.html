@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- Courses Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h5>
+                <h1>Our Popular Courses</h1>
+            </div>
+            <div class="row">
+            <form>
+                {% csrf_token %}
+                <input type="text" placeholder="search" name="search" value={{res}}>
+                <button type="submit">search</button>
+                <a href="{% url 'add-course'%}">Add course</a>
+            </form>
+            </div>
+            <div class="row">
+                {% for course in courses %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="rounded overflow-hidden mb-2">
+                            <img  src={{course.image.url}} width="350px" height="200px" alt="">
+                            <div class="bg-secondary p-4">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{course.active_users}}</small>
+                                    <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
+                                </div>
+                                <a class="h5" href="{% url 'course_detail' course.slug %}">{{course.title}}</a>
+                                <div class="border-top mt-4 pt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{course.reting}}<small>(250)</small></h6>
+                                        <h5 class="m-0">{{course.price}} {{course.price_type}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+        </div>
+    </div>
+    <!-- Courses End -->
+{% endblock %}

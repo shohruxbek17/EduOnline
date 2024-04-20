@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+      <form method="post">
+        {% csrf_token %}
+          <label for="title"></label>
+          <input id="title" placeholder="title" name="title" v> <br><br>
+
+          <label for="description"></label>
+          <input id="description" placeholder="description" name="description"> "><br><br>
+
+          <label for="price"></label>
+          <input id="price" placeholder="price" name="price"><br><br>
+
+          <label for="image"></label>
+          <input id="image" placeholder="image" name="image" type="file"><br><br>
+          <button type="submit" class="btn btn-secondary btn-sm">Add new course</button>
+
+      </form>
+
+{% endblock %}
